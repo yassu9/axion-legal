@@ -4,65 +4,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Axion - Advanced Discord Bot for Utility, Automation, and Moderation">
-    <title>Axion – Discord Bot</title>
+    <meta name="description" content="Axion - Premium Discord Bot for Utility, Automation, and Moderation">
+    <title>Axion – Premium Discord Bot</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 </head>
 
 <body>
     <header>
-        <div class="nav-container">
-            <a href="./" class="logo">Axion</a>
-            <nav class="nav-links">
-                <a href="./">Home</a>
-                <a href="terms.html">Terms</a>
-                <a href="privacy.html">Privacy</a>
-                <a href="https://discord.gg/y3bUbbD3Dg" target="_blank">Support</a>
+        <div class="container nav-wrapper">
+            <a href="./" class="logo">
+                <div class="logo-badge">⚡</div>
+                Axion
+            </a>
+            <nav class="nav-menu">
+                <a href="./" class="nav-link active">Home</a>
+                <a href="terms.html" class="nav-link">Terms</a>
+                <a href="privacy.html" class="nav-link">Privacy</a>
             </nav>
         </div>
     </header>
 
     <main>
-        <section class="hero">
-            <h1>Elevate Your Discord Server</h1>
-            <p>Axion provides powerful utility, automation, and moderation tools to help you manage your community with
-                ease. Professional, reliable, and secure.</p>
-            <a href="https://discord.com/oauth2/authorize?client_id=1455885544285405186&permissions=8&scope=bot%20applications.commands"
-                class="cta-button">Add to Discord</a>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="glow-blob blob-1"></div>
+            <div class="container">
+                <div class="hero-content">
+                    <h1>The Ultimate <span class="gradient-accent">discord bot</span><br>for serious communities.</h1>
+                    <p>Elevate your server with professional moderation, seamless automation, and premium utility tools.
+                        Trusted by top communities.</p>
+
+                    <div class="hero-actions">
+                        <a href="https://discord.com/oauth2/authorize?client_id=1455885544285405186&permissions=8&scope=bot%20applications.commands"
+                            class="btn btn-primary">
+                            <span>Add to Discord</span>
+                            <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 4v16m8-8H4" />
+                            </svg>
+                        </a>
+                        <a href="https://discord.gg/y3bUbbD3Dg" target="_blank" class="btn btn-secondary">
+                            <span>Support Server</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="trust-badge-container">
+                    <div class="trust-item">
+                        <svg fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <span>Verified Safe</span>
+                    </div>
+                    <div class="trust-item">
+                        <svg fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <span>No Card Data Stored</span>
+                    </div>
+                    <div class="trust-item">
+                        <svg fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <span>Discord Compliant</span>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <section class="features">
-            <div class="feature-card">
-                <h3>Advanced Moderation</h3>
-                <p>Keep your server safe with automated moderation tools, anti-raid protection, and comprehensive
-                    logging capabilities.</p>
-            </div>
-            <div class="feature-card">
-                <h3>Utility & Automation</h3>
-                <p>Streamline daily tasks with custom commands, auto-roles, welcome messages, and dynamic server
-                    management features.</p>
-            </div>
-            <div class="feature-card">
-                <h3>Premium Features</h3>
-                <p>Unlock exclusive digital services and enhanced capabilities to take your server to the next level.
-                </p>
+        <!-- Features Section -->
+        <section class="features-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Powerful Features</h2>
+                    <p class="text-secondary">Everything you need to build and manage a thriving community.</p>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="icon-box">
+                            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                            </svg>
+                        </div>
+                        <h3>Advanced Moderation</h3>
+                        <p>Keep your server safe with automated anti-raid protection, smart filters, and detailed audit
+                            logging.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="icon-box">
+                            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                        <h3>Automation Tools</h3>
+                        <p>Streamline daily tasks with auto-roles, welcome messages, and dynamic server management
+                            features.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="icon-box">
+                            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+                            </svg>
+                        </div>
+                        <h3>Utility Suite</h3>
+                        <p>Essential tools for giveaways, polls, user info, and server analytics at your fingertips.</p>
+                    </div>
+
+                    <div class="feature-card" style="border-color: var(--accent-primary);">
+                        <div class="icon-box" style="background: var(--accent-primary); color: white;">
+                            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                            </svg>
+                        </div>
+                        <h3>Premium Enhancements</h3>
+                        <p>Unlock exclusive digital services including higher limits, custom branding, and priority
+                            support.</p>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="terms.html">Terms of Service</a>
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="https://discord.gg/y3bUbbD3Dg" target="_blank">Support Server</a>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="./" class="logo">
+                        <div class="logo-badge">⚡</div>
+                        Axion
+                    </a>
+                    <p>Building the future of Discord communities with advanced tools and reliable automation.</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="https://discord.gg/y3bUbbD3Dg" target="_blank">Discord Server</a></li>
+                        <li><a href="mailto:Yashvantmali01@gmail.com">Contact Email</a></li>
+                    </ul>
+                </div>
             </div>
-            <p class="copyright">&copy; 2026 Axion. All rights reserved.</p>
-            <p class="copyright" style="font-size: 0.8rem; margin-top: -1rem;">Axion is a Discord Bot. Not affiliated
-                with Discord Inc.</p>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Axion. All rights reserved. Not affiliated with Discord Inc.</p>
+            </div>
         </div>
     </footer>
 </body>
