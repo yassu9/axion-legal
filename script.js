@@ -139,28 +139,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 5. Real-Time Data Fetching ---
     const fetchRealTimeStats = async () => {
-        try {
-            // TODO: YAHAN APNE API KA URL DAALEIN JO BOT KE STATS RETURN KARE
-            // Example API response expected: { "servers": 650, "users": 315000, "shards": 16 }
-            const apiUrl = 'https://api.yourdomain.com/bot-stats';
+        /*
+         * Pull configuration from meta tags instead of hardcoding.
+         * On GitHub Pages you can populate these during build/deploy
+         * using an action or Jekyll config; the page itself remains static.
+         *
+         * Example in `index.html`:
+         * <meta name="api-url" content="https://api.yourdomain.com/bot-stats">
+         * <meta name="api-token" content="YOUR_BOT_TOKEN_OR_KEY">
+         */
+        const metaUrl = document.querySelector('meta[name="api-url"]');
+        const metaToken = document.querySelector('meta[name="api-token"]');
+        const apiUrl = metaUrl ? metaUrl.content : '';
+        const apiToken = metaToken ? metaToken.content : '';
 
-            const response = await fetch(apiUrl);
+        try {
+            const response = await fetch(apiUrl, {
+                headers: {
+                    'Authorization': apiToken.startsWith('Bot ') ? apiToken : `Bot ${apiToken}`,
+                    'Accept': 'application/json',
+                },
+            });
 
             if (response.ok) {
                 const data = await response.json();
-
-                // DOM Update before animation runs
+                // update numbers before animation, just like before
                 if (data.servers) document.getElementById('server-count').innerText = data.servers + '+';
                 if (data.users) {
-                    const formattedUsers = data.users >= 1000 ? (data.users / 1000).toFixed(0) + 'k+' : data.users + '+';
+                    const formattedUsers = data.users >= 1000
+                        ? (data.users / 1000).toFixed(0) + 'k+'
+                        : data.users + '+';
                     document.getElementById('user-count').innerText = formattedUsers;
                 }
                 if (data.shards) document.getElementById('shard-count').innerText = data.shards;
+            } else {
+                console.warn('Stats fetch failed', response.status, await response.text());
             }
         } catch (error) {
-            console.log('API not reachable or not set yet. Showing default static stats.');
+            console.log('API not reachable or not set yet. Showing default static stats.', error);
         } finally {
-            // Counter animation ko stats fetch hone ke baad run karein
+            // run animation after trying to fetch
             setTimeout(animateCounters, 500);
         }
     };

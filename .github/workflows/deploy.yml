@@ -1,0 +1,29 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # inject the token(s) from repository secrets into the static HTML
+      - name: Insert API URL and token
+        run: |
+          # make sure file exists before editing
+          if [ -f index.html ]; then
+            sed -i 's#<meta name="api-url" content="">#<meta name="api-url" content="${{ secrets.API_URL }}">#' index.html || true
+            sed -i 's#<meta name="api-token" content="">#<meta name="api-token" content="${{ secrets.AXION_TOKEN }}">#' index.html || true
+            # if you need a second token you can add another meta tag and replace it here
+          fi
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
