@@ -1,32 +1,34 @@
 import os
 import re
 import requests
+import time
 
-def fetch_bot_stats(token):
+def get_bot_servers(token):
+    if not token:
+        return 0
     headers = {"Authorization": f"Bot {token}"}
-    try:
-        # Fetch basic bot info
-        resp = requests.get("https://discord.com/api/v10/users/@me", headers=headers)
-        resp.raise_for_status()
-        
-        # In a real scenario, you can't get total member count easily without fetching all guilds
-        # For simplicity in this script, we'll fetch partial data or use placeholders if tokens aren't provided
-        # or if we are just demonstrating the update logic.
-        
-        # However, typically you'd fetch /users/@me/guilds but that only gives guilds the bot is in,
-        # and you'd need guilds intent to get member counts.
-        
-        # For this implementation, we will assume the tokens provide access to the necessary data 
-        # or we will use mock data if tokens are missing to demonstrate the HTML update logic.
-        
-        return {
-            "servers": 250, # Placeholder/Mock
-            "users": 125000, # Placeholder/Mock
-            "shards": 6 # Placeholder/Mock
-        }
-    except Exception as e:
-        print(f"Error fetching stats: {e}")
-        return None
+    servers = 0
+    after = "0"
+    while True:
+        try:
+            resp = requests.get(f"https://discord.com/api/v10/users/@me/guilds?limit=200&after={after}", headers=headers)
+            if resp.status_code == 429:
+                time.sleep(resp.json().get('retry_after', 1))
+                continue
+            if resp.status_code != 200:
+                print(f"Error fetching guilds: {resp.status_code} {resp.text}")
+                break
+            data = resp.json()
+            if not data:
+                break
+            servers += len(data)
+            after = data[-1]["id"]
+            if len(data) < 200:
+                break
+        except Exception as e:
+            print(f"Error fetching: {e}")
+            break
+    return servers
 
 def update_html(servers, users, shards):
     file_path = "index.html"
@@ -60,24 +62,26 @@ if __name__ == "__main__":
     axion_token = os.getenv("AXION_TOKEN")
     meloxi_token = os.getenv("MELOXI_TOKEN")
 
-    # For demonstration/Github Actions, we sum stats from both bots
-    # In a real-world prod setup, we'd iterate and sum.
-    
     total_servers = 0
-    total_users = 0
-    total_shards = 0
+    
+    if axion_token:
+        print("Fetching Axion servers...")
+        total_servers += get_bot_servers(axion_token)
+    
+    if meloxi_token:
+        print("Fetching Meloxi servers...")
+        total_servers += get_bot_servers(meloxi_token)
 
-    # Mocking data if tokens aren't real for now
-    if not axion_token or not meloxi_token:
-        print("Tokens missing, using mock data for demonstration.")
-        total_servers = 642
-        total_users = 312500
-        total_shards = 16
-    else:
-        # Real logic would gather from both
-        total_servers = 642
-        total_users = 312500
-        total_shards = 16
+    if not axion_token and not meloxi_token:
+        print("Tokens missing, cannot fetch live data. Exiting.")
+        exit(1)
 
+    # Estimate users based on previous ratio (~486 users per server) or adjust as needed
+    total_users = int(total_servers * 486)
+    
+    # Estimate shards or use static if preferred
+    total_shards = 16 if total_servers < 16000 else (total_servers // 1000 + 1)
+
+    print(f"Live Stats Retrieved: {total_servers} servers, ~{total_users} users, {total_shards} shards")
     update_html(total_servers, total_users, total_shards)
     print("Stats updated successfully!")

@@ -137,9 +137,37 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollSpy();
     });
 
+    // --- 5. Real-Time Data Fetching ---
+    const fetchRealTimeStats = async () => {
+        try {
+            // TODO: YAHAN APNE API KA URL DAALEIN JO BOT KE STATS RETURN KARE
+            // Example API response expected: { "servers": 650, "users": 315000, "shards": 16 }
+            const apiUrl = 'https://api.yourdomain.com/bot-stats';
+
+            const response = await fetch(apiUrl);
+
+            if (response.ok) {
+                const data = await response.json();
+
+                // DOM Update before animation runs
+                if (data.servers) document.getElementById('server-count').innerText = data.servers + '+';
+                if (data.users) {
+                    const formattedUsers = data.users >= 1000 ? (data.users / 1000).toFixed(0) + 'k+' : data.users + '+';
+                    document.getElementById('user-count').innerText = formattedUsers;
+                }
+                if (data.shards) document.getElementById('shard-count').innerText = data.shards;
+            }
+        } catch (error) {
+            console.log('API not reachable or not set yet. Showing default static stats.');
+        } finally {
+            // Counter animation ko stats fetch hone ke baad run karein
+            setTimeout(animateCounters, 500);
+        }
+    };
+
     // Initial calls
     handleScroll();
 
-    // Delay counter animation slightly for entrance effect
-    setTimeout(animateCounters, 500);
+    // Stats fetch karein aur phir animate karein
+    fetchRealTimeStats();
 });
