@@ -1,0 +1,35 @@
+name: Update Bot Stats
+
+on:
+  schedule:
+    - cron: '0 * * * *' # Hourly
+  workflow_dispatch: # Manual trigger
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/status@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install Dependencies
+        run: pip install requests
+
+      - name: Update Stats
+        env:
+          AXION_TOKEN: ${{ secrets.AXION_TOKEN }}
+          MELOXI_TOKEN: ${{ secrets.MELOXI_TOKEN }}
+        run: python update_stats.py
+
+      - name: Commit and Push Changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add index.html
+          git commit -m "Auto-update bot statistics [skip ci]" || echo "No changes to commit"
+          git push
