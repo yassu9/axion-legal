@@ -91,6 +91,7 @@ ul {
 .text-gradient {
     background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -174,7 +175,25 @@ p {
     font-weight: 500;
     color: var(--text-secondary);
     position: relative;
-    padding: 5px 0;
+    padding: 8px 16px;
+    border-radius: var(--radius-md);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: inherit;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: -1;
 }
 
 .nav-link:hover,
@@ -182,18 +201,30 @@ p {
     color: var(--text-primary);
 }
 
-.nav-link.active::after {
+.nav-link:hover::before,
+.nav-link.active::before {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.nav-link::after {
     content: '';
     position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 100%;
+    bottom: 2px;
+    left: 50%;
+    width: 0;
     height: 2px;
     background: var(--accent-primary);
     border-radius: 2px;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
 }
 
-/* Buttons */
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 40px;
+}
+
 .btn {
     display: inline-flex;
     align-items: center;
@@ -202,10 +233,35 @@ p {
     border-radius: var(--radius-md);
     font-weight: 600;
     font-size: 1rem;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     cursor: pointer;
     border: none;
     gap: 8px;
+    user-select: none;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+.btn:hover::after {
+    opacity: 1;
 }
 
 .btn-primary {
@@ -215,8 +271,8 @@ p {
 }
 
 .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.23);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
 }
 
 .btn-secondary {
@@ -227,7 +283,9 @@ p {
 
 .btn-secondary:hover {
     background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
 }
 
 .btn-meloxi {
@@ -237,8 +295,8 @@ p {
 }
 
 .btn-meloxi:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(129, 140, 248, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(129, 140, 248, 0.4);
 }
 
 /* Hero Section */
@@ -288,6 +346,46 @@ p {
     margin-top: 20px;
     margin-bottom: 60px;
     flex-wrap: wrap;
+    position: relative;
+}
+
+.stats-summary::before {
+    content: 'Live Statistics';
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--accent-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.live-pulse {
+    width: 8px;
+    height: 8px;
+    background: #10b981;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    box-shadow: 0 0 10px #10b981;
+}
+
+.live-pulse::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    border-radius: inherit;
+    animation: pulse-ring 1.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
 }
 
 .stat-box {
@@ -601,22 +699,116 @@ p {
     color: var(--text-dim);
 }
 
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: var(--accent-primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 99;
+    box-shadow: var(--shadow-lg);
+}
+
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    transform: translateY(-5px);
+    background: var(--accent-hover);
+}
+
+/* Scroll Reveal */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animations */
+@keyframes pulse-ring {
+    0% {
+        transform: translate(-50%, -50%) scale(0.33);
+        opacity: 1;
+    }
+
+    80%,
+    100% {
+        transform: translate(-50%, -50%) scale(2);
+        opacity: 0;
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Navbar Toggle for Mobile */
+.nav-toggle {
+    display: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.nav-toggle span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background: var(--text-primary);
+    margin-bottom: 5px;
+    transition: 0.3s;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
+    .nav-toggle {
+        display: block;
+    }
+
+    .stat-box {
+        min-width: 100%;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .nav-links {
+        display: none;
+        /* Will be toggled via JS */
+    }
+
     .nav-link {
         display: none;
     }
 
     .nav-container {
         justify-content: center;
-    }
-
-    .nav-links {
-        display: none;
-    }
-
-    .hero h1 {
-        font-size: 2.5rem;
     }
 
     .footer-content {
@@ -653,10 +845,7 @@ p {
     }
 
     .nav-link.active::after {
-        top: 0;
-        bottom: auto;
-        height: 2px;
-        background: transparent;
-        color: var(--accent-primary);
+        opacity: 0;
+        display: none;
     }
 }

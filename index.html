@@ -19,7 +19,12 @@
                 </div>
                 Axion & Meloxi
             </a>
-            <nav class="nav-links">
+            <div class="nav-toggle" id="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav class="nav-links" id="nav-menu">
                 <a href="./" class="nav-link active">Home</a>
                 <a href="#bots" class="nav-link">Our Bots</a>
                 <a href="#stats" class="nav-link">Live Stats</a>
@@ -50,7 +55,10 @@
                 </div>
 
                 <!-- Stats Summary -->
-                <div class="stats-summary" id="stats">
+                <div class="stats-summary reveal" id="stats">
+                    <script>
+                        document.getElementById('stats').insertAdjacentHTML('afterbegin', '<span class="live-pulse"></span>');
+                    </script>
                     <div class="stat-box">
                         <span class="stat-number" id="server-count">642+</span>
                         <span class="stat-desc">Total Servers</span>
@@ -66,7 +74,7 @@
                 </div>
 
                 <!-- Featured Bots Section -->
-                <section class="featured-bots" id="bots">
+                <section class="featured-bots reveal" id="bots">
                     <div class="container">
                         <div class="section-title">
                             <h2>Our Featured Bots</h2>
@@ -164,7 +172,7 @@
                 </section>
 
                 <!-- Features Section -->
-                <section class="features">
+                <section class="features reveal">
                     <div class="container">
                         <div class="section-title">
                             <h2>Powerful Features</h2>
@@ -262,6 +270,15 @@
             </div>
         </div>
     </footer>
+
+    <!-- Back to Top -->
+    <div class="back-to-top" id="back-to-top">
+        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 
 </html>
