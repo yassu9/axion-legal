@@ -140,47 +140,55 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 5. Real-Time Data Fetching ---
     const fetchRealTimeStats = async () => {
         /*
-         * Pull configuration from meta tags instead of hardcoding.
-         * On GitHub Pages you can populate these during build/deploy
-         * using an action or Jekyll config; the page itself remains static.
-         *
-         * Example in `index.html`:
-         * <meta name="api-url" content="https://api.yourdomain.com/bot-stats">
-         * <meta name="api-token" content="YOUR_BOT_TOKEN_OR_KEY">
+         * Read API URL and up to two tokens from meta tags. Fetch each separately
+         * and sum the results so both bots’ counts appear combined.
          */
         const metaUrl = document.querySelector('meta[name="api-url"]');
-        const metaToken = document.querySelector('meta[name="api-token"]');
+        const metaTokenAxion = document.querySelector('meta[name="api-token-axion"]');
+        const metaTokenMeloxi = document.querySelector('meta[name="api-token-meloxi"]');
         const apiUrl = metaUrl ? metaUrl.content : '';
-        const apiToken = metaToken ? metaToken.content : '';
+        const apiTokenAxion = metaTokenAxion ? metaTokenAxion.content : '';
+        const apiTokenMeloxi = metaTokenMeloxi ? metaTokenMeloxi.content : '';
 
-        try {
-            const response = await fetch(apiUrl, {
-                headers: {
-                    'Authorization': apiToken.startsWith('Bot ') ? apiToken : `Bot ${apiToken}`,
-                    'Accept': 'application/json',
-                },
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                // update numbers before animation, just like before
-                if (data.servers) document.getElementById('server-count').innerText = data.servers + '+';
-                if (data.users) {
-                    const formattedUsers = data.users >= 1000
-                        ? (data.users / 1000).toFixed(0) + 'k+'
-                        : data.users + '+';
-                    document.getElementById('user-count').innerText = formattedUsers;
-                }
-                if (data.shards) document.getElementById('shard-count').innerText = data.shards;
-            } else {
-                console.warn('Stats fetch failed', response.status, await response.text());
+        const fetchWithToken = async (url, token) => {
+            if (!url || !token) return { servers: 0, users: 0, shards: 0 };
+            try {
+                const res = await fetch(url, {
+                    headers: {
+                        'Authorization': token.startsWith('Bot ') ? token : `Bot ${token}`,
+                        'Accept': 'application/json',
+                    },
+                });
+                return res.ok ? await res.json() : { servers: 0, users: 0, shards: 0 };
+            } catch {
+                return { servers: 0, users: 0, shards: 0 };
             }
-        } catch (error) {
-            console.log('API not reachable or not set yet. Showing default static stats.', error);
-        } finally {
-            // run animation after trying to fetch
-            setTimeout(animateCounters, 500);
+        };
+
+        let total = { servers: 0, users: 0, shards: 0 };
+        if (apiTokenAxion) {
+            const d = await fetchWithToken(apiUrl, apiTokenAxion);
+            total.servers += d.servers || 0;
+            total.users += d.users || 0;
+            total.shards += d.shards || 0;
         }
+        if (apiTokenMeloxi) {
+            const d = await fetchWithToken(apiUrl, apiTokenMeloxi);
+            total.servers += d.servers || 0;
+            total.users += d.users || 0;
+            total.shards += d.shards || 0;
+        }
+
+        // update DOM values
+        if (total.servers) document.getElementById('server-count').innerText = total.servers + '+';
+        if (total.users) {
+            const formatted = total.users >= 1000 ? (total.users / 1000).toFixed(0) + 'k+' : total.users + '+';
+            document.getElementById('user-count').innerText = formatted;
+        }
+        if (total.shards) document.getElementById('shard-count').innerText = total.shards;
+
+        // always run animation after stats
+        setTimeout(animateCounters, 500);
     };
 
     // Initial calls
