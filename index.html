@@ -7,16 +7,17 @@
     <meta name="description" content="Axion - Premium Discord Bot for Utility, Automation, and Moderation">
     <title>Axion – Premium Discord Bot</title>
     <link rel="stylesheet" href="style.css?v=FINAL">
-    <link rel="icon" type="image/svg+xml"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+    <link rel="icon" type="image/png" href="assets/logo.png">
 </head>
 
 <body>
     <header class="navbar">
         <div class="container nav-container">
             <a href="./" class="brand">
-                <div class="brand-icon">⚡</div>
-                Axion
+                <div class="brand-icon">
+                    <img src="assets/logo.png" alt="Axion Logo" class="brand-logo">
+                </div>
+                Axion & Meloxi
             </a>
             <nav class="nav-links">
                 <a href="./" class="nav-link active">Home</a>
@@ -31,9 +32,10 @@
         <section class="hero">
             <div class="hero-bg-glow"></div>
             <div class="container">
-                <h1>The Ultimate <span class="text-accent-gradient">Discord Bot</span><br>for serious communities.</h1>
-                <p>Elevate your server with professional moderation, seamless automation, and premium utility tools.
-                    Trusted by top communities.</p>
+                <h1>Elevate your <span class="text-accent-gradient">Discord Experience</span><br>with our premium bot
+                    suite.</h1>
+                <p>From advanced moderation and automation to high-fidelity music and AI-powered moods.
+                    The only tools your community will ever need.</p>
 
                 <div class="hero-buttons">
                     <a href="https://discord.com/oauth2/authorize?client_id=1455885544285405186&permissions=8&scope=bot%20applications.commands"
@@ -45,93 +47,166 @@
                     </a>
                 </div>
 
-                <div class="trust-badges">
-                    <div class="trust-item">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                clip-rule="evenodd" />
-                        </svg>
-                        <span>Verified Safe</span>
-                    </div>
-                    <div class="trust-item">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                                clip-rule="evenodd" />
-                        </svg>
-                        <span>No Card Data Stored</span>
-                    </div>
-                    <div class="trust-item">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                clip-rule="evenodd" />
-                        </svg>
-                        <span>Discord Compliant</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Features Section -->
-        <section class="features">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Powerful Features</h2>
-                    <p>Everything you need to build and manage a thriving community.</p>
-                </div>
-
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                            </svg>
+                <!-- Featured Bots Section -->
+                <section class="featured-bots" id="bots">
+                    <div class="container">
+                        <div class="section-title">
+                            <h2>Our Featured Bots</h2>
+                            <p>Select the perfect companion for your server's needs.</p>
                         </div>
-                        <h3>Advanced Moderation</h3>
-                        <p>Keep your server safe with automated anti-raid protection, smart filters, and detailed audit
-                            logging.</p>
-                    </div>
 
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M13 10V3L4 14h7v7l9-11h-7z" />
-                            </svg>
-                        </div>
-                        <h3>Automation Tools</h3>
-                        <p>Streamline daily tasks with auto-roles, welcome messages, and dynamic server management
-                            features.</p>
-                    </div>
+                        <div class="bots-grid">
+                            <!-- Axion Card -->
+                            <div class="bot-card">
+                                <div class="bot-header">
+                                    <div class="bot-avatar">
+                                        <img src="assets/logo.png" alt="Axion" class="brand-logo">
+                                    </div>
+                                    <div class="bot-info">
+                                        <div class="bot-tag">Utility & Admin</div>
+                                        <h3>Axion</h3>
+                                    </div>
+                                </div>
+                                <p>The powerhouse for server management. Advanced moderation, smart automation, and a
+                                    complete utility suite for growing communities.</p>
+                                <div class="bot-features-list">
+                                    <div class="bot-feature-item">
+                                        <svg width="18" height="18" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        Anti-Raid & Auto-Mod
+                                    </div>
+                                    <div class="bot-feature-item">
+                                        <svg width="18" height="18" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        Custom Welcome & Auto-Roles
+                                    </div>
+                                    <div class="bot-feature-item">
+                                        <svg width="18" height="18" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        Giveaways & Polls System
+                                    </div>
+                                </div>
+                                <a href="https://discord.com/oauth2/authorize?client_id=1455885544285405186&permissions=8&scope=bot%20applications.commands"
+                                    class="btn btn-primary">Add Axion</a>
+                            </div>
 
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
-                            </svg>
+                            <!-- Meloxi Card -->
+                            <div class="bot-card meloxi-card">
+                                <div class="bot-header">
+                                    <div class="bot-avatar">
+                                        <img src="assets/meloxi.png" alt="Meloxi" class="brand-logo">
+                                    </div>
+                                    <div class="bot-info">
+                                        <div class="bot-tag">Music & Moods</div>
+                                        <h3>Meloxi</h3>
+                                    </div>
+                                </div>
+                                <p>The ultimate high-fidelity music experience. Featuring AI-powered mood detection,
+                                    Spotify Radio, and a unique social profile system.</p>
+                                <div class="bot-features-list">
+                                    <div class="bot-feature-item">
+                                        <svg width="18" height="18" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        Lossless Quality Audio
+                                    </div>
+                                    <div class="bot-feature-item">
+                                        <svg width="18" height="18" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        AI-Curated Magic Playlists
+                                    </div>
+                                    <div class="bot-feature-item">
+                                        <svg width="18" height="18" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        Profile XP & Social Badges
+                                    </div>
+                                </div>
+                                <a href="https://discord.com/oauth2/authorize?client_id=1458423301197140010"
+                                    class="btn btn-meloxi">Add Meloxi</a>
+                            </div>
                         </div>
-                        <h3>Utility Suite</h3>
-                        <p>Essential tools for giveaways, polls, user info, and server analytics at your fingertips.</p>
                     </div>
+                </section>
 
-                    <div class="feature-card" style="border-color: var(--accent-primary);">
-                        <div class="feature-icon" style="background: var(--accent-primary); color: white;">
-                            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                            </svg>
+                <!-- Features Section -->
+                <section class="features">
+                    <div class="container">
+                        <div class="section-title">
+                            <h2>Powerful Features</h2>
+                            <p>Everything you need to build and manage a thriving community.</p>
                         </div>
-                        <h3>Premium Enhancements</h3>
-                        <p>Unlock exclusive digital services including higher limits, custom branding, and priority
-                            support.</p>
+
+                        <div class="features-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                    </svg>
+                                </div>
+                                <h3>Advanced Moderation</h3>
+                                <p>Keep your server safe with automated anti-raid protection, smart filters, and
+                                    detailed audit
+                                    logging.</p>
+                            </div>
+
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                    </svg>
+                                </div>
+                                <h3>Automation Tools</h3>
+                                <p>Streamline daily tasks with auto-roles, welcome messages, and dynamic server
+                                    management
+                                    features.</p>
+                            </div>
+
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+                                    </svg>
+                                </div>
+                                <h3>Utility Suite</h3>
+                                <p>Essential tools for giveaways, polls, user info, and server analytics at your
+                                    fingertips.</p>
+                            </div>
+
+                            <div class="feature-card" style="border-color: var(--accent-primary);">
+                                <div class="feature-icon" style="background: var(--accent-primary); color: white;">
+                                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                                    </svg>
+                                </div>
+                                <h3>Premium Enhancements</h3>
+                                <p>Unlock exclusive digital services including higher limits, custom branding, and
+                                    priority
+                                    support.</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </section>
+                </section>
     </main>
 
     <footer class="footer">
@@ -139,8 +214,10 @@
             <div class="footer-content">
                 <div class="footer-info">
                     <a href="./" class="brand">
-                        <div class="brand-icon">⚡</div>
-                        Axion
+                        <div class="brand-icon">
+                            <img src="assets/logo.png" alt="Axion Logo" class="brand-logo">
+                        </div>
+                        Axion & Meloxi
                     </a>
                     <p>Building the future of Discord communities with advanced tools and reliable automation.</p>
                 </div>
@@ -163,7 +240,7 @@
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2026 Axion. All rights reserved. Not affiliated with Discord Inc.</p>
+                <p>&copy; 2026 Axion & Meloxi. All rights reserved. Not affiliated with Discord Inc.</p>
             </div>
         </div>
     </footer>
